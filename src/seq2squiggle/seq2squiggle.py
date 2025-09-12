@@ -271,7 +271,7 @@ def conditional_option(f):
     f = click.option(
         "--distr",
         default="expon",
-        type=click.Choice(["expon", "beta", "gamma"]),
+        type=click.Choice(["expon", "beta", "gamma", "norm10", "norm30", "norm100", "norm500"], case_sensitive=False),
         help="Choose a distribution for read sampling.",
         show_default=True,
         hidden=True

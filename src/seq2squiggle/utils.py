@@ -331,19 +331,19 @@ def draw_expon_dis(mean, seed, total_len):
     return sample
 
 def draw_norm_dis_a(mean, seed, total_len):
-	sample = st.norm.rvs(loc=mean*2, scale=10, size=1, random_state=seed)
+	sample = st.norm.rvs(loc=mean, scale=10, size=1, random_state=seed)
 	sample = sample[0].astype(int)
 	sample = np.clip(sample, 1, total_len)
 	return sample
 
 def draw_norm_dis_b(mean, seed, total_len):
-	sample = st.norm.rvs(loc=mean*2, scale=30, size=1, random_state=seed)
+	sample = st.norm.rvs(loc=mean, scale=30, size=1, random_state=seed)
 	sample = sample[0].astype(int)
 	sample = np.clip(sample, 1, total_len)
 	return sample
 
 def draw_norm_dis_c(mean, seed, total_len):
-	sample = st.norm.rvs(loc=mean*2, scale=100, size=1, random_state=seed)
+	sample = st.norm.rvs(loc=mean, scale=100, size=1, random_state=seed)
 	sample = sample[0].astype(int)
 	sample = np.clip(sample, 1, total_len)
 	return sample

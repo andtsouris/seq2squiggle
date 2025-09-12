@@ -330,6 +330,32 @@ def draw_expon_dis(mean, seed, total_len):
     sample = np.clip(sample, 1, total_len)
     return sample
 
+def draw_norm_dis_a(mean, seed, total_len):
+	sample = st.norm.rvs(loc=mean*2, scale=10, size=1, random_state=seed)
+	sample = sample[0].astype(int)
+	sample = np.clip(sample, 1, total_len)
+	return sample
+
+def draw_norm_dis_b(mean, seed, total_len):
+	sample = st.norm.rvs(loc=mean*2, scale=30, size=1, random_state=seed)
+	sample = sample[0].astype(int)
+	sample = np.clip(sample, 1, total_len)
+	return sample
+
+def draw_norm_dis_c(mean, seed, total_len):
+	sample = st.norm.rvs(loc=mean*2, scale=100, size=1, random_state=seed)
+	sample = sample[0].astype(int)
+	sample = np.clip(sample, 1, total_len)
+	return sample
+
+def draw_norm_dis_d(mean, seed, total_len):
+	sample = st.norm.rvs(loc=mean*2, scale=500, size=1, random_state=seed)
+	sample = sample[0].astype(int)
+	sample = np.clip(sample, 1, total_len)
+	return sample
+
+
+
 
 def extract_kmers(dna_string, k):
     kmers = []
@@ -423,6 +449,10 @@ def sampling(
         "beta": draw_beta_dis,
         "gamma": draw_gamma_dis,
         "expon": draw_expon_dis,
+        "norm10": draw_norm_dis_a,
+        "norm30": draw_norm_dis_b,
+        "norm100": draw_norm_dis_c,
+        "norm500": draw_norm_dis_d,
     }
 
     sampled_reads = []

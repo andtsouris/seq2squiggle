@@ -531,7 +531,7 @@ def sample_reads_from_reference(
     config: dict,
     fasta: str,
     seed: int,
-    save: bool = False,
+    save: bool = True,
     distr: str = "expon",
     profile: str = "dna-r10-min",
     min_read_len: int = 30,
@@ -668,7 +668,7 @@ def preprocess_genome(fasta: str):
     return genome_seq_list, genome_len_list
 
 
-def get_reads(fasta, read_input, n, r, c, config, distr, seed, profile, min_read_len, save=False):
+def get_reads(fasta, read_input, n, r, c, config, distr, seed, profile, min_read_len, save=True):
     logger.info(f"{'Read' if read_input else 'Reference'} mode.")
     is_rna = profile.startswith("rna")
 

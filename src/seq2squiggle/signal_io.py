@@ -18,13 +18,6 @@ from pathlib import Path
 logger = logging.getLogger("seq2squiggle")
 
 
-def indexed_uuid(index: int) -> uuid.UUID:
-    """
-    Generate a UUID4-like but incrementing UUID using an index.
-    """
-    return uuid.UUID(f"00000000-0000-0000-0000-{index:012d}")
-
-
 def write_template_map(output_path: str, mapping: dict) -> None:
     """Write a CSV mapping read_id (UUID) -> original FASTA header."""
     csv_path = Path(str(Path(output_path).with_suffix("")) + "_template_map.csv")
@@ -155,7 +148,7 @@ class BLOW5Writer:
 
             record, aux = s5.get_empty_record(aux=True)
 
-            record["read_id"] = str(indexed_uuid(idx + 1))
+            record["read_id"] = str(read_id)
             template_map[record["read_id"]] = read_id
             record["read_group"] = 0
             record["digitisation"] = self.digitisation
@@ -275,10 +268,8 @@ class POD5Writer:
                 reason=pod5.EndReasonEnum.SIGNAL_POSITIVE, forced=False
             )
 
-            read_uuid = indexed_uuid(idx + 1)
-            template_map[str(read_uuid)] = read_id
             read = pod5.Read(
-                read_id=read_uuid,
+                read_id=uuid.UUID(read_id),
                 pore=pore,
                 calibration=calibration,
                 read_number=idx,

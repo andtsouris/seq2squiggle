@@ -698,7 +698,7 @@ def get_reads(fasta, read_input, n, r, c, config, distr, seed, profile, min_read
         genome_seqs, genome_lens = preprocess_genome(fasta)
         reads_fasta, total_l = sample_reads_from_reference(genome_seqs, genome_lens, n, r, c, config, fasta, seed, save, distr, profile, min_read_len)
     
-    return read_fasta(reads_fasta, is_rna) if save else (reads_fasta, total_l)
+    return (read_fasta(reads_fasta, is_rna), total_l) if save else (reads_fasta, total_l)
 
 
 def count_parameters(model):

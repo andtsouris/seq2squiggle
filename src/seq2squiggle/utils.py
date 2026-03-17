@@ -514,7 +514,7 @@ def export_fasta(read_l, fasta):
     out_file = f"{file_name}_reads.fasta"
     with open(out_file, "w") as f:
         for i, read in enumerate(read_l):
-            f.write(f"{str(uuid4())}\n{''.join(read)}\n")
+            f.write(f">{str(uuid4())}\n{''.join(read)}\n")
     return out_file
 
 
